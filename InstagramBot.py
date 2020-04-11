@@ -17,8 +17,8 @@ chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 class InstagramBot():
 
     def __init__(self, email, password):
-        self.browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-        # self.browser = webdriver.Chrome()
+        # self.browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+        self.browser = webdriver.Chrome()
         self.email = email
         self.password = password
         self.wait = WebDriverWait(self.browser, 10)
@@ -27,19 +27,19 @@ class InstagramBot():
         self.browser.get(
             'https://www.instagram.com/accounts/login/'
         )
-
         emailInput = self.wait.until(
             EC.visibility_of_element_located((By.NAME, 'username'))
         )
-
         passwordInput = self.browser.find_element_by_name('password')
         emailInput.send_keys(self.email)
         passwordInput.send_keys(self.password)
         passwordInput.send_keys(Keys.ENTER)
         time.sleep(2)
 
-    def editBio(self, bioText):
+    def gotoAccountEditPage(self):
         self.browser.get("https://www.instagram.com/accounts/edit/")
+
+    def editBio(self, bioText):
         bioTextArea = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'textarea')))
         bioTextArea.clear()
         bioTextArea.send_keys(bioText)
