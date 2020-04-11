@@ -29,7 +29,7 @@ def update():
         isLoggedIn = False
 
 
-@sched.scheduled_job('interval', minutes=10)
+@sched.scheduled_job('interval', minutes=1)
 def timed_job():
     print("running clock")
     if(not isLoggedIn):
