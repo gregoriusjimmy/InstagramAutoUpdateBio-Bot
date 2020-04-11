@@ -2,6 +2,7 @@ from InstagramBot import InstagramBot
 import requests
 from datetime import datetime
 import pytemperature
+import os
 
 
 def getBioData():
