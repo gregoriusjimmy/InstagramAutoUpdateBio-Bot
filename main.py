@@ -16,21 +16,3 @@ def getBioData():
     city = data["name"]
     bioText = f"{temp}°C {city}\n{desc}\n{time}"
     return bioText
-
-
-def updateBio():
-    try:
-        ig_username = os.environ.get("IG_USERNAME")
-        ig_password = os.environ.get("IG_PASSWORD")
-        bot = InstagramBot(ig_username, ig_password)
-        bot.signIn()
-        bot.editBio(getBioData())
-        bot.closeBrowser()
-        print("update success")
-    except:
-        print("update failed")
-        bot.closeBrowser()
-
-
-if __name__ == '__main__':
-    updateBio()

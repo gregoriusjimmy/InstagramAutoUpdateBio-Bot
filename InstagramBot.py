@@ -27,19 +27,19 @@ class InstagramBot():
         self.browser.get(
             'https://www.instagram.com/accounts/login/'
         )
-
         emailInput = self.wait.until(
             EC.visibility_of_element_located((By.NAME, 'username'))
         )
-
         passwordInput = self.browser.find_element_by_name('password')
         emailInput.send_keys(self.email)
         passwordInput.send_keys(self.password)
         passwordInput.send_keys(Keys.ENTER)
         time.sleep(2)
 
-    def editBio(self, bioText):
+    def gotoAccountEditPage(self):
         self.browser.get("https://www.instagram.com/accounts/edit/")
+
+    def editBio(self, bioText):
         bioTextArea = self.wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'textarea')))
         bioTextArea.clear()
         bioTextArea.send_keys(bioText)
